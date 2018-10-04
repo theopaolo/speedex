@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Speed exquis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Speed exquis</h1>
+
+  <p id='phrase'>  </p>
+  [ <span id=mots></span> ]
+  <p id="demo"></p>
+
+  <button id="boom">BOOM</button>
+</body>
+
+<script>
+var str1 = "Le grand enemi de l'art c'est le bon goût.";
+var originalstr = decoupe(str1);
+var laphrase = decoupe(str1);
+var n = laphrase.length;
+var tempArr = [];
+var i = 0;
+var y = 0;
+var mots;
+var select;
+
+function decoupe (phrase){ return phrase.split(" "); }
+
+for(var i =0; i < n-1; i++) {
+   tempArr.push(laphrase.splice(Math.floor(Math.random() * laphrase.length) , 1) );
+}
+
+tempArr.push(laphrase);
+laphrase = tempArr;
+console.log("La phrase = " + laphrase);
+var index = 0;
+
+function boucle() {
+  mots = laphrase[i++];
+  document
+    .getElementById('mots')
+    .innerHTML = mots;
+  document
+    .getElementById("boom")
+    .onclick =  function(){ selected() };
+
+  if (i == n) i = 0;
+  console.log("La phrase = " + laphrase);
+}
+
+function selected() {
+  select = mots;
+  compat = originalstr[y];
+  if(select == compat){
+    document
+    .getElementById("phrase")
+    .innerHTML += select + " ";
+    y++;
+    compat = originalstr[y];
+    laphrase.splice(laphrase.indexOf(select), 1);
+    n = laphrase.length;
+  } else {
+    alert('naaa');
+  }
+  console.log("FFF = " + laphrase);
+  console.log("mots = " + mots);
+  console.log("La phrase = " + laphrase);
+  console.log("Length = " + n);
+}
+
+
+setInterval(boucle, 800);
+
+
+// select le index de l'array on click.
+// Afficher dans l'ordre les items de l'array
+// Comparaison avec string original
+// Vrais ou de faux
+// enlever le selected du boucle
+// Continuer loop
+//
+
+
+</script>
+</html>
